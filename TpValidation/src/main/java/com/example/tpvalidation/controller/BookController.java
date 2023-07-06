@@ -2,6 +2,7 @@ package com.example.tpvalidation.controller;
 
 import com.example.tpvalidation.entity.Author;
 import com.example.tpvalidation.entity.Book;
+import com.example.tpvalidation.entity.Genre;
 import com.example.tpvalidation.service.AuthorService;
 import com.example.tpvalidation.service.BookService;
 import jakarta.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +43,38 @@ public class BookController {
         } else {
             return ResponseEntity.ok(books);
         }
+
+    }
+
+    @PutMapping("put/{id}")
+    public ResponseEntity<String> update(@PathVariable("id") Integer id, @RequestBody Book book){
+
+        if(!bookService.getBookById(id).isPresent()){
+            String message = "Book n'existe pas";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+
+        if(book == null || book.getTitle() == null || book.getYear() == null){
+            String message = "Requete invalide : le nom et la description sont requis";
+            return ResponseEntity.badRequest().body(message);
+
+        }
+        bookService.updateBook(id, book);
+        String message = "Le Livre avec l'id : " + id + "est mis à jour";
+        return ResponseEntity.ok(message);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") Integer id){
+
+        if(!bookService.getBookById(id).isPresent()){
+            String message = "Genre n'existe pas";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        }
+
+        bookService.deleteBook(id);
+
+        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("/api/v1/all")).build();
 
     }
 

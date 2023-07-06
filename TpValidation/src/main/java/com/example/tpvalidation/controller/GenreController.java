@@ -68,7 +68,7 @@ public class GenreController {
     public ResponseEntity<String> delete(@PathVariable("id") Integer id){
 
         if(!genreService.getGenreById(id).isPresent()){
-            String message = "Utilisateur n'existe pas";
+            String message = "Genre n'existe pas";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
         }
 
