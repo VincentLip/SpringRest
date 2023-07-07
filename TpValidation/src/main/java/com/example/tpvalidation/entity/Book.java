@@ -30,20 +30,13 @@ public class Book {
     private Integer year;
 
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.DETACH)
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
-
-
-
-
-
-
-
 
 
 }
