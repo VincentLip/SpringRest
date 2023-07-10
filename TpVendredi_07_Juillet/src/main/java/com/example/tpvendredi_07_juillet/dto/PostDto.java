@@ -1,9 +1,6 @@
 package com.example.tpvendredi_07_juillet.dto;
 
 
-import com.example.tpvendredi_07_juillet.entity.Comment;
-import com.example.tpvendredi_07_juillet.entity.User;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -11,7 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -29,7 +25,6 @@ public class PostDto {
     @NotEmpty(message = "text should not be null or empty")
     @Size(max = 250,message = "Caracteres maximum de 250")
     private String text;
-
 
     private UserDto userDto;
 

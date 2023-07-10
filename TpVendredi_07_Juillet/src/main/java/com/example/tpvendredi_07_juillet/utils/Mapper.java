@@ -3,7 +3,9 @@ package com.example.tpvendredi_07_juillet.utils;
 import com.example.tpvendredi_07_juillet.dto.*;
 import com.example.tpvendredi_07_juillet.entity.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Mapper {
 
     public UserDto mapToDto(User user) {

@@ -1,6 +1,7 @@
 package com.example.tpvendredi_07_juillet.service;
 
 import com.example.tpvendredi_07_juillet.dto.UserDto;
+
 import java.util.List;
 
 public interface UserService {
@@ -9,7 +10,7 @@ public interface UserService {
 
     List<UserDto> getAllUsers();
 
-    UserDto getUserById( Integer id);
+    UserDto getUserById(Integer id);
 
     UserDto updateUser(UserDto userDto, Integer id);
 
